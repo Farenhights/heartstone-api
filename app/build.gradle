@@ -30,6 +30,10 @@ android {
         prod {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            buildConfigField "String", 'API_BASE_URL', '"https://omgvamp-hearthstone-v1.p.rapidapi.com/"'
+            buildConfigField "String", 'API_HOST', '"omgvamp-hearthstone-v1.p.rapidapi.com"'
+            buildConfigField "String", 'API_KEY', '"665a3b5d82msh9f69e3a780f5cbdp1cf947jsn7d289caefcf8"'
         }
 
         dev {
@@ -37,7 +41,9 @@ android {
             debuggable true
             signingConfig signingConfigs.debug
 
-            buildConfigField "String", 'API_BASE_URL', "''"
+            buildConfigField "String", 'API_BASE_URL', '"https://omgvamp-hearthstone-v1.p.rapidapi.com/"'
+            buildConfigField "String", 'API_HOST', '"omgvamp-hearthstone-v1.p.rapidapi.com"'
+            buildConfigField "String", 'API_KEY', '"665a3b5d82msh9f69e3a780f5cbdp1cf947jsn7d289caefcf8"'
         }
     }
 }

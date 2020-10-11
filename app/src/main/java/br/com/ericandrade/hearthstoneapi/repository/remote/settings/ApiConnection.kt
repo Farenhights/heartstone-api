@@ -1,13 +1,18 @@
 package br.com.ericandrade.hearthstoneapi.repository.remote.settings
 
 import br.com.ericandrade.hearthstoneapi.BuildConfig
+import br.com.ericandrade.hearthstoneapi.repository.remote.settings.interceptor.HeaderInterceptor
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.java.KoinJavaComponent.inject
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 class ApiConnection {
+
+    private val headerInterceptor: HeaderInterceptor by inject(HeaderInterceptor::class.java)
 
     fun <S> create(
         host: String,
@@ -19,6 +24,7 @@ class ApiConnection {
 
         val httpClient = OkHttpClient.Builder()
             .addInterceptor(interceptor)
+            .addInterceptor(headerInterceptor)
             .build()
 
         return Retrofit.Builder()
@@ -31,34 +37,3 @@ class ApiConnection {
             .create(serviceClass)
     }
 }
-
-//private val api = apiConnection.create(BuildConfig.API_URL_CARD, CardApi::class.java)
-//}
-
-/*
-val repositoryModule = module {
-    single { CardRepository( get(), get()) }
-    single { UserRepository( get(), get()) }
-    single { SessionRepository( get()) }
-    single { NavigationRepository( get()) }
-    single { PromotionRepository( get()) }
-    single { AppCacheRepository( get()) }
-    single { SecurityRepository( get()) }
-    single { FacebookRepository( get()) }
-    single { PlaceRepository( get()) }
-    single { SelfServiceRepository( get(), get()) }
-    single { MarketCloudRepository( get(), get(), get() ) }
-    single { GoogleAdsBuilder() }
-    single { NetworkDeliveryRepository( get() ) }
-    single { GooglePlacesRepository( get() ) }
-    single { RemoteConfigRepository() }
-
-    single { CardService( get()) }
-    single { PromotionService( get()) }
-    single { UserService( get()) }
-    single { SecurityService( get()) }
-    single { PlaceService( get()) }
-    single { SelfService( get()) }
-    single { NetworkDeliveryService( get() ) }
-    single { GooglePlacesService( get() ) }
-}*/
