@@ -14,7 +14,7 @@ val apiConnectionModule = module {
 val viewModelModule = module { }
 
 val repositoryModule = module {
-    single { HeartStoneRepository() }
+    single { HeartStoneRepository(get()) }
 }
 
 val serviceModule = module {
