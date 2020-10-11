@@ -1,5 +1,7 @@
 package br.com.ericandrade.hearthstoneapi.di
 
+import br.com.ericandrade.hearthstoneapi.repository.remote.HeartStoneRepository
+import br.com.ericandrade.hearthstoneapi.repository.remote.service.HeartStoneService
 import br.com.ericandrade.hearthstoneapi.repository.remote.settings.ApiConnection
 import br.com.ericandrade.hearthstoneapi.repository.remote.settings.interceptor.HeaderInterceptor
 import org.koin.dsl.module
@@ -11,4 +13,10 @@ val apiConnectionModule = module {
 
 val viewModelModule = module { }
 
-val repositoryModule = module { }
+val repositoryModule = module {
+    single { HeartStoneRepository() }
+}
+
+val serviceModule = module {
+    single { HeartStoneService(get()) }
+}
