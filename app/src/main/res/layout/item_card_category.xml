@@ -26,12 +26,11 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/cardCategoryTitle"
+                android:id="@+id/cardCategoryTitleTextView"
                 style="@style/DefaultText"
                 android:layout_marginStart="@dimen/margin_extra_extra_large"
                 android:layout_marginBottom="@dimen/margin_extra_large"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_size_large"
+                android:textSize="@dimen/text_size_extra_large"
                 app:layout_constraintBottom_toBottomOf="@+id/cardCategoryView"
                 app:layout_constraintStart_toStartOf="@+id/cardCategoryView"
                 tools:text="Druid" />
