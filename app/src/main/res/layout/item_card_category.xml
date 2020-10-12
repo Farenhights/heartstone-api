@@ -7,8 +7,8 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardCategoryCardView"
-        android:layout_width="164dp"
-        android:layout_height="124dp"
+        android:layout_width="@dimen/card_category_card_view_width"
+        android:layout_height="@dimen/card_category_card_view_height"
         android:layout_marginStart="12dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="12dp"
@@ -31,6 +31,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginBottom="16dp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_large"
                 app:layout_constraintBottom_toBottomOf="@+id/cardCategoryView"
                 app:layout_constraintStart_toStartOf="@+id/cardCategoryView"
                 tools:text="Druid" />

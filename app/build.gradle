@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 
 ext {
     appcompat_version = '1.2.0'
+    material_version = '1.2.1'
     constraint_layout_version = '2.0.2'
     recycler_view_version = '1.1.0'
     card_view_version = '1.0.0'
@@ -63,6 +64,7 @@ dependencies {
 
     // Layout
     implementation "androidx.appcompat:appcompat:$appcompat_version"
+    implementation "com.google.android.material:material:$material_version"
     implementation "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
     implementation "androidx.recyclerview:recyclerview:$recycler_view_version"
     implementation "androidx.cardview:cardview:$card_view_version"

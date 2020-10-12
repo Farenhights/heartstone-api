@@ -30,4 +30,8 @@
 
     <dimen name="default_btn_width">280dp</dimen>
     <dimen name="default_btn_height">56dp</dimen>
+
+    <!-- item_card_category -->
+    <dimen name="card_category_card_view_width">164dp</dimen>
+    <dimen name="card_category_card_view_height">124dp</dimen>
 </resources>

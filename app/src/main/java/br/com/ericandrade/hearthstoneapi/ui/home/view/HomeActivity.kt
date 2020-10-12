@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import br.com.ericandrade.hearthstoneapi.R
 import br.com.ericandrade.hearthstoneapi.domain.general.CardCategory
+import br.com.ericandrade.hearthstoneapi.ui.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
@@ -23,6 +24,15 @@ class HomeActivity : AppCompatActivity() {
             cardCategories,
             ::onClickCardCategory
         )
+        titleToolbarTextView.setOnClickListener {
+            Toast.makeText(this, getString(R.string.size_name), Toast.LENGTH_SHORT).show()
+        }
+
+        setView()
+    }
+
+    private fun setView() {
+
     }
 
     private fun onClickCardCategory(cardCategory: CardCategory) {
