@@ -1,6 +1,6 @@
 package br.com.ericandrade.hearthstoneapi.repository.remote
 
-import br.com.ericandrade.hearthstoneapi.domain.CardByType
+import br.com.ericandrade.hearthstoneapi.domain.general.CardByType
 import br.com.ericandrade.hearthstoneapi.mapper.CardByTypeMapper
 import br.com.ericandrade.hearthstoneapi.repository.remote.service.HeartStoneService
 import io.reactivex.disposables.Disposable

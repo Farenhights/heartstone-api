@@ -1,4 +1,4 @@
-package br.com.ericandrade.hearthstoneapi.domain
+package br.com.ericandrade.hearthstoneapi.domain.general
 
 import br.com.ericandrade.hearthstoneapi.repository.remote.service.response.MechanicResponse
 
