@@ -71,7 +71,7 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    private fun onClickCardCategory(cardCategory: CardCategory) {
-        Toast.makeText(this, cardCategory.title, Toast.LENGTH_SHORT).show()
+    private fun onClickCardCategory(cardByType: CardByType) {
+        Toast.makeText(this, cardByType.playerClass, Toast.LENGTH_SHORT).show()
     }
 }
