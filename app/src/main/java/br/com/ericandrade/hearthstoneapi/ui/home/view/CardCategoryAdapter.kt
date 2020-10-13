@@ -6,13 +6,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.ericandrade.hearthstoneapi.R
 import br.com.ericandrade.hearthstoneapi.domain.general.Basic
-import br.com.ericandrade.hearthstoneapi.domain.general.CardType
-import br.com.ericandrade.hearthstoneapi.domain.general.CardCategory
+import br.com.ericandrade.hearthstoneapi.domain.general.CardInformation
 import kotlinx.android.synthetic.main.item_card.view.*
 import kotlinx.android.synthetic.main.item_card_category_title.view.*
 
 class CardCategoryAdapter(
-    private val cardCategories: ArrayList<Pair<Int, CardCategory>>,
+    private val cardCategories: ArrayList<Pair<Int, CardInformation>>,
     private val onClick: (Basic) -> Unit
 ) : RecyclerView.Adapter<CardCategoryAdapter.ViewHolder>() {
 
@@ -45,7 +44,7 @@ class CardCategoryAdapter(
 
     private fun bindTitleGroup(view: View, position: Int) {
         val item = cardCategories[position]
-        view.cardCategoryTitleTextView.text = item.second.title
+        view.cardCategoryTitleTextView.text = item.second.category
     }
 
     private fun bindCardGroup(view: View, position: Int) {
@@ -55,9 +54,9 @@ class CardCategoryAdapter(
 
     private fun setupCardAdapter(
         view: View,
-        item: CardCategory
+        item: CardInformation
     ) {
-        view.cardCategoryRecyclerView.adapter = CardAdapter(item.basicList, onClick)
+        view.cardCategoryRecyclerView.adapter = CardAdapter(item.basicCardInformationList, onClick)
     }
 
     override fun getItemViewType(position: Int): Int {

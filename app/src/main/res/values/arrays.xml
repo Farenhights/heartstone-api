@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="cards_categories">
+        <item>Classes</item>
+        <item>Types</item>
+        <item>Races</item>
+        <item>Qualities</item>
+        <item>Factions</item>
+    </string-array>
+</resources>

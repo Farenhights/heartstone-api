@@ -6,7 +6,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import br.com.ericandrade.hearthstoneapi.R
 import br.com.ericandrade.hearthstoneapi.databinding.ActivityHomeBinding
-import br.com.ericandrade.hearthstoneapi.domain.general.CardCategory
+import br.com.ericandrade.hearthstoneapi.domain.general.CardInformation
 import br.com.ericandrade.hearthstoneapi.ui.home.viewModel.HomeViewModel
 import org.koin.android.ext.android.inject
 import androidx.lifecycle.Observer
@@ -47,31 +47,45 @@ class HomeActivity : AppCompatActivity() {
         viewModel.cardLiveData.observe(
             this,
             Observer { card ->
-
-                val cardClasses = mutableListOf(
-                    CardCategory("Classes", card),
-                    CardCategory("Types", card),
-                    CardCategory("Races", card),
-                    CardCategory("Qualities", card),
-                    CardCategory("Factions", card)
-                )
-
-                val sortedList = cardClasses.groupBy { it.title }
-                val listGroup = ArrayList<Pair<Int, CardCategory>>()
-
-                for ((k, v) in sortedList) {
-                    listGroup.add(Pair(0, v.first()))
-                    v.forEach { cardCategory ->
-                        listGroup.add(Pair(1, cardCategory))
-                    }
-                }
-
-                binding.cardCategoryRecyclerView.adapter = CardCategoryAdapter(
-                    listGroup,
-                    ::onClickCardCategory
-                )
+                setupCards(card)
             }
         )
+    }
+
+    private fun setupCards(card: List<Basic>) {
+        val cardsCategories = resources.getStringArray(R.array.cards_categories)
+        val cards = setCardInformationList(cardsCategories, card)
+        val listGroup = setCategoryAndCardInformation(cards)
+
+        binding.cardCategoryRecyclerView.adapter = CardCategoryAdapter(
+            listGroup,
+            ::onClickCardCategory
+        )
+    }
+
+    private fun setCardInformationList(
+        cardsCategories: Array<out String>,
+        card: List<Basic>
+    ): MutableList<CardInformation> {
+        val cardInformationList = mutableListOf<CardInformation>()
+
+        cardsCategories.forEach {
+            cardInformationList.add(CardInformation(it, card))
+        }
+        return cardInformationList
+    }
+
+    private fun setCategoryAndCardInformation(cardInformationList: MutableList<CardInformation>): ArrayList<Pair<Int, CardInformation>> {
+        val sortedList = cardInformationList.groupBy { it.category }
+        val listGroup = ArrayList<Pair<Int, CardInformation>>()
+
+        for ((k, v) in sortedList) {
+            listGroup.add(Pair(0, v.first()))
+            v.forEach { cardCategory ->
+                listGroup.add(Pair(1, cardCategory))
+            }
+        }
+        return listGroup
     }
 
     private fun setView() {
