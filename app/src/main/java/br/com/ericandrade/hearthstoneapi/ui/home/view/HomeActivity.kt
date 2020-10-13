@@ -6,11 +6,12 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import br.com.ericandrade.hearthstoneapi.R
 import br.com.ericandrade.hearthstoneapi.databinding.ActivityHomeBinding
-import br.com.ericandrade.hearthstoneapi.domain.general.CardByType
+import br.com.ericandrade.hearthstoneapi.domain.general.CardType
 import br.com.ericandrade.hearthstoneapi.domain.general.CardCategory
 import br.com.ericandrade.hearthstoneapi.ui.home.viewModel.HomeViewModel
-import kotlinx.android.synthetic.main.activity_home.*
 import org.koin.android.ext.android.inject
+import androidx.lifecycle.Observer
+import br.com.ericandrade.hearthstoneapi.domain.general.Basic
 
 class HomeActivity : AppCompatActivity() {
 
@@ -36,42 +37,53 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun setObservables() {
-//        binding.viewModel.cardsByTypeListLiveData.observe(
-//            this, Observer(list ->
-//            )
-//        )
+        viewModel.cardsListLiveData.observe(
+            this,
+            Observer { cardTypeList ->
+
+
+            }
+        )
+
+        viewModel.cardLiveData.observe(
+            this,
+            Observer { card ->
+
+                val cardClasses = mutableListOf(
+                    CardCategory("Classes", card.basic),
+                    CardCategory("Types", card.basic),
+                    CardCategory("Races", card.basic)
+                )
+
+                val sortedList = cardClasses.groupBy { it.title }
+                val listGroup = ArrayList<Pair<Int, Basic>>()
+
+                for ((k, v) in sortedList) {
+                    listGroup.add(Pair(0, v.first()))
+                    v.forEach { cardCategory ->
+                        listGroup.add(Pair(1, cardCategory))
+                    }
+                }
+
+                binding.cardCategoryRecyclerView.adapter = CardCategoryAdapter(
+                    listGroup,
+                    ::onClickCardCategory
+                )
+            }
+        )
     }
 
     private fun setView() {
-        val cardClasses = mutableListOf(
-            CardCategory("Classes", listOf(CardByType(playerClass = "Priest"), CardByType(playerClass = "Druid"), CardByType(playerClass = "Zombie"))),
-            CardCategory("Types", listOf(CardByType(playerClass = "Human"), CardByType(playerClass = "Priest"), CardByType(playerClass = "Vampire"), CardByType(playerClass = "Human"))),
-            CardCategory("Races", listOf(CardByType(playerClass = "Vampire"), CardByType(playerClass = "Werewolf"), CardByType(playerClass = "Human"), CardByType(playerClass = "Druid"), CardByType(playerClass = "Werewolf")))
-        )
-
-        val sortedList = cardClasses.groupBy { it.title }
-        val listGroup = ArrayList<Pair<Int, CardCategory>>()
-
-        for ((k, v) in sortedList) {
-            listGroup.add(Pair(0, v.first()))
-            v.forEach { cardCategory ->
-                listGroup.add(Pair(1, cardCategory))
-            }
-        }
-
-        binding.cardCategoryRecyclerView.adapter = CardCategoryAdapter(
-            listGroup,
-            ::onClickCardCategory
-        )
+        viewModel.getCards()
     }
 
     private fun setEvents() {
-        titleToolbarTextView.setOnClickListener {
+        binding.titleToolbarTextView.setOnClickListener {
             Toast.makeText(this, getString(R.string.size_name), Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun onClickCardCategory(cardByType: CardByType) {
-        Toast.makeText(this, cardByType.playerClass, Toast.LENGTH_SHORT).show()
+    private fun onClickCardCategory(cardType: CardType) {
+        Toast.makeText(this, cardType.playerClass, Toast.LENGTH_SHORT).show()
     }
 }

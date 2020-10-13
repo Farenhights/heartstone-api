@@ -2,7 +2,7 @@ package br.com.ericandrade.hearthstoneapi.repository.remote.service.response
 
 import com.google.gson.annotations.SerializedName
 
-class CardByTypeResponse(
+class CardTypeResponse(
     @SerializedName("cardId") val cardId: String,
     @SerializedName("dbfId") val dbfId: Int,
     @SerializedName("name") val name: String,
