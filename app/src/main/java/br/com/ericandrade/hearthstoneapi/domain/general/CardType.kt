@@ -10,6 +10,7 @@ class CardType(
     val type: String,
     val text: String,
     val playerClass: String,
+    val img: String,
     val locale: String,
     val mechanics: List<MechanicResponse>
 )

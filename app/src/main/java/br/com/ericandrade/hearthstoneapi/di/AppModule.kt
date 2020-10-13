@@ -4,6 +4,7 @@ import br.com.ericandrade.hearthstoneapi.repository.remote.HearthStoneRepository
 import br.com.ericandrade.hearthstoneapi.repository.remote.service.HeartStoneService
 import br.com.ericandrade.hearthstoneapi.repository.remote.settings.ApiConnection
 import br.com.ericandrade.hearthstoneapi.repository.remote.settings.interceptor.HeaderInterceptor
+import br.com.ericandrade.hearthstoneapi.ui.cards.viewModel.CardsViewModel
 import br.com.ericandrade.hearthstoneapi.ui.home.viewModel.HomeViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -15,6 +16,7 @@ val apiConnectionModule = module {
 
 val viewModelModule = module {
     viewModel { HomeViewModel(get()) }
+    viewModel { CardsViewModel(get()) }
 }
 
 val repositoryModule = module {

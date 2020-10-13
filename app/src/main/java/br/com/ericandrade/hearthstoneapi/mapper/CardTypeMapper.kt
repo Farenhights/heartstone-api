@@ -19,6 +19,7 @@ class CardTypeMapper {
                         type = it.type ?: String(),
                         text = it.text ?: String(),
                         playerClass = it.playerClass ?: String(),
+                        img = it.img ?: String(),
                         locale = it.locale ?: String(),
                         mechanics = it.mechanics ?: listOf()
                     )

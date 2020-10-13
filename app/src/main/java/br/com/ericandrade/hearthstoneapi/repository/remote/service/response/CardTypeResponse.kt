@@ -10,6 +10,7 @@ class CardTypeResponse(
     @SerializedName("type") val type: String,
     @SerializedName("text") val text: String,
     @SerializedName("playerClass") val playerClass: String,
+    @SerializedName("img") val img: String,
     @SerializedName("locale") val locale: String,
     @SerializedName("mechanics") val mechanics: List<MechanicResponse>
 )

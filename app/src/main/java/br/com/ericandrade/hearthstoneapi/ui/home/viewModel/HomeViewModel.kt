@@ -14,18 +14,6 @@ class HomeViewModel(
     internal val cardsListLiveData = MutableLiveData<List<CardType>>()
     internal val cardBasicInformationListLiveData = MutableLiveData<List<Basic>>()
 
-    fun getCardsByType(playerClass: String) {
-        hearthStoneRepository.getCardsByType(
-            playerClass,
-            ::onGetCardsByTypeSuccess,
-            ::onFailure
-        )
-    }
-
-    private fun onGetCardsByTypeSuccess(cardTypes: List<CardType>) {
-        cardsListLiveData.value = cardTypes
-    }
-
     fun getCards() {
         loadingLiveData.value = true
         disposable.add(

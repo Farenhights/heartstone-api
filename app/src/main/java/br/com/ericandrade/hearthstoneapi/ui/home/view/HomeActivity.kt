@@ -1,8 +1,8 @@
 package br.com.ericandrade.hearthstoneapi.ui.home.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.databinding.DataBindingUtil
 import br.com.ericandrade.hearthstoneapi.R
 import br.com.ericandrade.hearthstoneapi.databinding.ActivityHomeBinding
@@ -12,6 +12,7 @@ import org.koin.android.ext.android.inject
 import androidx.lifecycle.Observer
 import br.com.ericandrade.hearthstoneapi.domain.general.Basic
 import br.com.ericandrade.hearthstoneapi.ui.base.BaseActivity
+import br.com.ericandrade.hearthstoneapi.ui.cards.view.CardsActivity
 
 class HomeActivity : BaseActivity() {
 
@@ -44,14 +45,6 @@ class HomeActivity : BaseActivity() {
         binding.viewModel!!.loadingLiveData.observe(this@HomeActivity, Observer { shouldShow ->
             showIndeterminateProgressDialog(R.string.wait, shouldShow)
         })
-
-        binding.viewModel!!.cardsListLiveData.observe(
-            this,
-            Observer { cardTypeList ->
-
-
-            }
-        )
 
         binding.viewModel!!.cardBasicInformationListLiveData.observe(
             this,
@@ -110,6 +103,10 @@ class HomeActivity : BaseActivity() {
     }
 
     private fun onClickCardCategory(cardBasic: Basic) {
-        Toast.makeText(this, cardBasic.playerClass, Toast.LENGTH_SHORT).show()
+        val bundle = Bundle()
+        val intent = Intent(this, CardsActivity::class.java)
+        intent.putExtra(CardsActivity.player_class, cardBasic.playerClass)
+
+        startActivity(intent, bundle)
     }
 }

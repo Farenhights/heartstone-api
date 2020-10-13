@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.ericandrade.hearthstoneapi.R
 import br.com.ericandrade.hearthstoneapi.domain.general.Basic
 import br.com.ericandrade.hearthstoneapi.domain.general.CardInformation
-import kotlinx.android.synthetic.main.item_card.view.*
+import kotlinx.android.synthetic.main.item_card_information.view.*
 import kotlinx.android.synthetic.main.item_card_category_title.view.*
 
 class CardCategoryAdapter(
@@ -27,7 +27,7 @@ class CardCategoryAdapter(
             }
             else -> {
                 LayoutInflater.from(parent.context)
-                    .inflate(R.layout.item_card, parent, false)
+                    .inflate(R.layout.item_card_information, parent, false)
             }
         }
         return ViewHolder(view)
