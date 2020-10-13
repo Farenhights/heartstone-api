@@ -1,6 +1,7 @@
 package br.com.ericandrade.hearthstoneapi.ui.home.viewModel
 
 import androidx.lifecycle.MutableLiveData
+import br.com.ericandrade.hearthstoneapi.domain.general.Basic
 import br.com.ericandrade.hearthstoneapi.domain.general.Card
 import br.com.ericandrade.hearthstoneapi.domain.general.CardType
 import br.com.ericandrade.hearthstoneapi.repository.remote.HearthStoneRepository
@@ -11,7 +12,7 @@ class HomeViewModel(
 ): BaseViewModel() {
 
     internal val cardsListLiveData = MutableLiveData<List<CardType>>()
-    internal val cardLiveData = MutableLiveData<Card>()
+    internal val cardLiveData = MutableLiveData<List<Basic>>()
 
     fun getCardsByType(playerClass: String) {
         hearthStoneRepository.getCardsByType(
@@ -33,7 +34,8 @@ class HomeViewModel(
     }
 
     private fun onGetCardsSuccess(card: Card) {
-        cardLiveData.value = card
+        val cards = card.basic.distinctBy { it.playerClass }
+        cardLiveData.value = cards
     }
 
     private fun onFailure(throwable: Throwable) {

@@ -49,9 +49,11 @@ class HomeActivity : AppCompatActivity() {
             Observer { card ->
 
                 val cardClasses = mutableListOf(
-                    CardCategory("Classes", card.basic),
-                    CardCategory("Types", card.basic),
-                    CardCategory("Races", card.basic)
+                    CardCategory("Classes", card),
+                    CardCategory("Types", card),
+                    CardCategory("Races", card),
+                    CardCategory("Qualities", card),
+                    CardCategory("Factions", card)
                 )
 
                 val sortedList = cardClasses.groupBy { it.title }
