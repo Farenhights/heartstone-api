@@ -8,8 +8,8 @@ import br.com.ericandrade.hearthstoneapi.repository.remote.HearthStoneRepository
 import br.com.ericandrade.hearthstoneapi.ui.base.BaseViewModel
 
 class HomeViewModel(
-   private val hearthStoneRepository: HearthStoneRepository
-): BaseViewModel() {
+    private val hearthStoneRepository: HearthStoneRepository
+) : BaseViewModel() {
 
     internal val cardsListLiveData = MutableLiveData<List<CardType>>()
     internal val cardBasicInformationListLiveData = MutableLiveData<List<Basic>>()
@@ -27,18 +27,23 @@ class HomeViewModel(
     }
 
     fun getCards() {
-        hearthStoneRepository.getCards(
-            ::onGetCardsSuccess,
-            ::onFailure
+        loadingLiveData.value = true
+        disposable.add(
+            hearthStoneRepository.getCards(
+                ::onGetCardsSuccess,
+                ::onFailure
+            )
         )
     }
 
     private fun onGetCardsSuccess(card: Card) {
+        loadingLiveData.value = false
         val cardBasicInformationList = card.basic.distinctBy { it.playerClass }
         cardBasicInformationListLiveData.value = cardBasicInformationList
     }
 
     private fun onFailure(throwable: Throwable) {
+        loadingLiveData.value = false
         when (throwable) {
         }
     }

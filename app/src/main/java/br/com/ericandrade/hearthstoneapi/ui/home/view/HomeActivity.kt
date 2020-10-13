@@ -1,6 +1,5 @@
 package br.com.ericandrade.hearthstoneapi.ui.home.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
@@ -11,8 +10,9 @@ import br.com.ericandrade.hearthstoneapi.ui.home.viewModel.HomeViewModel
 import org.koin.android.ext.android.inject
 import androidx.lifecycle.Observer
 import br.com.ericandrade.hearthstoneapi.domain.general.Basic
+import br.com.ericandrade.hearthstoneapi.ui.base.BaseActivity
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : BaseActivity() {
 
     private val viewModel: HomeViewModel by inject()
 
@@ -41,6 +41,10 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun setObservables() {
+        binding.viewModel!!.loadingLiveData.observe(this@HomeActivity, Observer { shouldShow ->
+            showIndeterminateProgressDialog(R.string.wait, shouldShow)
+        })
+
         binding.viewModel!!.cardsListLiveData.observe(
             this,
             Observer { cardTypeList ->

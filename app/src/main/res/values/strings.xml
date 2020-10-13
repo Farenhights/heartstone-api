@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Hearthstone</string>
+    <string name="wait">Aguarde&#8230;</string>
 </resources>
