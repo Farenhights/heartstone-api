@@ -12,7 +12,7 @@ class HomeViewModel(
 ): BaseViewModel() {
 
     internal val cardsListLiveData = MutableLiveData<List<CardType>>()
-    internal val cardLiveData = MutableLiveData<List<Basic>>()
+    internal val cardBasicInformationListLiveData = MutableLiveData<List<Basic>>()
 
     fun getCardsByType(playerClass: String) {
         hearthStoneRepository.getCardsByType(
@@ -34,8 +34,8 @@ class HomeViewModel(
     }
 
     private fun onGetCardsSuccess(card: Card) {
-        val cards = card.basic.distinctBy { it.playerClass }
-        cardLiveData.value = cards
+        val cardBasicInformationList = card.basic.distinctBy { it.playerClass }
+        cardBasicInformationListLiveData.value = cardBasicInformationList
     }
 
     private fun onFailure(throwable: Throwable) {
