@@ -5,7 +5,7 @@ import br.com.ericandrade.hearthstoneapi.mapper.CardByTypeMapper
 import br.com.ericandrade.hearthstoneapi.repository.remote.service.HeartStoneService
 import io.reactivex.disposables.Disposable
 
-class HeartStoneRepository(
+class HearthStoneRepository(
     private val heartStoneService: HeartStoneService
 ) {
     fun getCardsByType(

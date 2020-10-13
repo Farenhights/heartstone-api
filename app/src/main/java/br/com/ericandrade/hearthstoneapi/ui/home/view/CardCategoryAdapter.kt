@@ -1,16 +1,14 @@
 package br.com.ericandrade.hearthstoneapi.ui.home.view
 
-import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.ericandrade.hearthstoneapi.R
 import br.com.ericandrade.hearthstoneapi.domain.general.CardCategory
-import kotlinx.android.synthetic.main.item_card_category.view.*
+import kotlinx.android.synthetic.main.item_card.view.*
 import kotlinx.android.synthetic.main.item_card_category_title.view.*
-import java.util.*
-import kotlin.collections.ArrayList
 
 class CardCategoryAdapter(
     private val cardCategories: ArrayList<Pair<Int, CardCategory>>,
@@ -23,7 +21,7 @@ class CardCategoryAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-
+    Log.d("VIEW TYPE", viewType.toString())
         val view = when (viewType) {
             HEADER -> {
                 LayoutInflater.from(parent.context)
@@ -31,7 +29,7 @@ class CardCategoryAdapter(
             }
             else -> {
                 LayoutInflater.from(parent.context)
-                    .inflate(R.layout.item_card_category, parent, false)
+                    .inflate(R.layout.item_card, parent, false)
             }
         }
         return ViewHolder(view)
@@ -63,14 +61,13 @@ class CardCategoryAdapter(
 
     private fun bindItemChild(view: View, position: Int) {
         val item = cardCategories[position]
-        setupCardCategory(view, item)
+        setupCardCategory(view, item.second)
     }
 
-    private fun setupCardCategory(view: View, item: Pair<Int, CardCategory>) {
-        val rnd = Random()
-        val color: Int = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256))
-        view.cardCategoryCardView.setCardBackgroundColor(color)
-
-        view.cardCategoryTitleTextView.text = item.second.cardByType.playerClass
+    private fun setupCardCategory(
+        view: View,
+        item: CardCategory
+    ) {
+        view.cardCategoryRecyclerView.adapter = CardAdapter(item.cardsByType, onClick)
     }
 }
