@@ -6,7 +6,6 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import br.com.ericandrade.hearthstoneapi.R
 import br.com.ericandrade.hearthstoneapi.databinding.ActivityHomeBinding
-import br.com.ericandrade.hearthstoneapi.domain.general.CardType
 import br.com.ericandrade.hearthstoneapi.domain.general.CardCategory
 import br.com.ericandrade.hearthstoneapi.ui.home.viewModel.HomeViewModel
 import org.koin.android.ext.android.inject
@@ -56,7 +55,7 @@ class HomeActivity : AppCompatActivity() {
                 )
 
                 val sortedList = cardClasses.groupBy { it.title }
-                val listGroup = ArrayList<Pair<Int, Basic>>()
+                val listGroup = ArrayList<Pair<Int, CardCategory>>()
 
                 for ((k, v) in sortedList) {
                     listGroup.add(Pair(0, v.first()))
@@ -83,7 +82,7 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    private fun onClickCardCategory(cardType: CardType) {
-        Toast.makeText(this, cardType.playerClass, Toast.LENGTH_SHORT).show()
+    private fun onClickCardCategory(cardBasic: Basic) {
+        Toast.makeText(this, cardBasic.playerClass, Toast.LENGTH_SHORT).show()
     }
 }

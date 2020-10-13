@@ -16,14 +16,14 @@ class CardMapper {
             basicListResponse.forEach { basicResponse ->
                 basicList.add(
                     Basic(
-                        cardId = basicResponse.cardId,
-                        dbfId = basicResponse.dbfId,
-                        name = basicResponse.name,
-                        cardSet = basicResponse.cardSet,
-                        type = basicResponse.type,
-                        text = basicResponse.text,
-                        playerClass = basicResponse.playerClass,
-                        locale = basicResponse.locale
+                        cardId = basicResponse.cardId ?: String(),
+                        dbfId = basicResponse.dbfId ?: Int.MIN_VALUE,
+                        name = basicResponse.name ?: String(),
+                        cardSet = basicResponse.cardSet ?: String(),
+                        type = basicResponse.type ?: String(),
+                        text = basicResponse.text ?: String(),
+                        playerClass = basicResponse.playerClass ?: String(),
+                        locale = basicResponse.locale ?: String()
                     )
                 )
             }

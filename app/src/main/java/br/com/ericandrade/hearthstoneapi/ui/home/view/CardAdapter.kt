@@ -6,13 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.ericandrade.hearthstoneapi.R
+import br.com.ericandrade.hearthstoneapi.domain.general.Basic
 import br.com.ericandrade.hearthstoneapi.domain.general.CardType
 import kotlinx.android.synthetic.main.item_card_category.view.*
 import java.util.*
 
 class CardAdapter(
-    private val cardTypeCategories: List<CardType>,
-    private val onClick: (CardType) -> Unit
+    private val cardBasicList: List<Basic>,
+    private val onClick: (Basic) -> Unit
 ) : RecyclerView.Adapter<CardAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -22,12 +23,12 @@ class CardAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val cardType = cardTypeCategories[position]
+        val cardBasic = cardBasicList[position]
         val color: Int = setCardBackgroundRandomColor()
 
-        holder.title.text = cardType.playerClass
+        holder.title.text = cardBasic.playerClass
         holder.cardView.setCardBackgroundColor(color)
-        holder.cardView.setOnClickListener { onClick(cardType) }
+        holder.cardView.setOnClickListener { onClick(cardBasic) }
     }
 
     private fun setCardBackgroundRandomColor(): Int {
@@ -36,7 +37,7 @@ class CardAdapter(
     }
 
     override fun getItemCount(): Int {
-        return cardTypeCategories.size
+        return cardBasicList.size
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
