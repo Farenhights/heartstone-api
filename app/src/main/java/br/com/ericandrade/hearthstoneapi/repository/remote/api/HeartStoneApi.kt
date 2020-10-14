@@ -8,11 +8,31 @@ import retrofit2.http.Path
 
 interface HeartStoneApi {
 
+    @GET("cards")
+    fun getCards() : Observable<CardResponse>
+
     @GET("cards/classes/{playerClass}")
+    fun getCardsByClass(
+        @Path("playerClass") playerClass: String
+    ) : Observable<List<CardTypeResponse>>
+
+    @GET("cards/races/{playerClass}")
+    fun getCardsByRace(
+        @Path("playerClass") playerClass: String
+    ) : Observable<List<CardTypeResponse>>
+
+    @GET("cards/qualities/{playerClass}")
+    fun getCardsByQuality(
+        @Path("playerClass") playerClass: String
+    ) : Observable<List<CardTypeResponse>>
+
+    @GET("cards/types/{playerClass}")
     fun getCardsByType(
         @Path("playerClass") playerClass: String
     ) : Observable<List<CardTypeResponse>>
 
-    @GET("cards")
-    fun getCards() : Observable<CardResponse>
+    @GET("cards/factions/{playerClass}")
+    fun getCardsByFaction(
+        @Path("playerClass") playerClass: String
+    ) : Observable<List<CardTypeResponse>>
 }

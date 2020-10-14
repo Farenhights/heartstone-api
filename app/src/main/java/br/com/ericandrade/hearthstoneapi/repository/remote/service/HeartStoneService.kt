@@ -13,6 +13,34 @@ class HeartStoneService(apiConnection: ApiConnection) {
 
     private val api = apiConnection.create(BuildConfig.API_BASE_URL, HeartStoneApi::class.java)
 
+    internal fun getCards(): Observable<CardResponse> {
+        return api
+            .getCards()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+    }
+
+    internal fun getCardsByClass(playerClass: String): Observable<List<CardTypeResponse>> {
+        return api
+            .getCardsByType(playerClass)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+    }
+
+    internal fun getCardsByRace(playerClass: String): Observable<List<CardTypeResponse>> {
+        return api
+            .getCardsByRace(playerClass)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+    }
+
+    internal fun getCardsByQuality(playerClass: String): Observable<List<CardTypeResponse>> {
+        return api
+            .getCardsByType(playerClass)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+    }
+
     internal fun getCardsByType(playerClass: String): Observable<List<CardTypeResponse>> {
         return api
             .getCardsByType(playerClass)
@@ -20,9 +48,9 @@ class HeartStoneService(apiConnection: ApiConnection) {
             .observeOn(AndroidSchedulers.mainThread())
     }
 
-    internal fun getCards(): Observable<CardResponse> {
+    internal fun getCardsByFaction(playerClass: String): Observable<List<CardTypeResponse>> {
         return api
-            .getCards()
+            .getCardsByType(playerClass)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }

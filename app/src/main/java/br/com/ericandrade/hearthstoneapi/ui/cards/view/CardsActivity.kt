@@ -1,10 +1,12 @@
 package br.com.ericandrade.hearthstoneapi.ui.cards.view
 
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.databinding.DataBindingUtil
 import br.com.ericandrade.hearthstoneapi.R
 import androidx.lifecycle.Observer
 import br.com.ericandrade.hearthstoneapi.databinding.ActivityCardsBinding
+import br.com.ericandrade.hearthstoneapi.domain.general.Basic
 import br.com.ericandrade.hearthstoneapi.ui.base.BaseActivity
 import br.com.ericandrade.hearthstoneapi.ui.cards.viewModel.CardsViewModel
 import org.koin.android.ext.android.inject
@@ -14,16 +16,16 @@ class CardsActivity : BaseActivity() {
     private val viewModel: CardsViewModel by inject()
 
     companion object {
-        const val player_class = "playerClass"
         const val category_type = "categoryType"
-    }
-
-    private val playerClass: String by lazy {
-        intent.extras?.getSerializable(player_class) as String
+        const val card_basic_information = "cardBasicInformation"
     }
 
     private val categoryType: String by lazy {
         intent.extras?.getSerializable(category_type) as String
+    }
+
+    private val cardBasicInformation: Basic by lazy {
+        intent.extras?.getSerializable(card_basic_information) as Basic
     }
 
     private val binding: ActivityCardsBinding by lazy {
@@ -42,7 +44,6 @@ class CardsActivity : BaseActivity() {
         setBinding()
         setObservables()
         setView()
-        setEvents()
     }
 
     private fun setBinding() {
@@ -64,10 +65,31 @@ class CardsActivity : BaseActivity() {
 
     private fun setView() {
         binding.viewModel!!.setTitle(categoryType)
-        binding.viewModel!!.getCardsByType(playerClass)
+        buildToolbar()
+        loadCards()
     }
 
-    private fun setEvents() {
+    private fun buildToolbar() {
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setHomeButtonEnabled(true)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+    }
 
+    private fun loadCards() {
+        when (categoryType) {
+            getString(R.string.classes) -> binding.viewModel!!.getCardsByClass(cardBasicInformation.playerClass)
+            getString(R.string.types) -> binding.viewModel!!.getCardsByType(cardBasicInformation.type)
+            getString(R.string.races) -> binding.viewModel!!.getCardsByRace(cardBasicInformation.race)
+            getString(R.string.qualities) -> binding.viewModel!!.getCardsByQuality(cardBasicInformation.playerClass)
+            getString(R.string.factions) -> binding.viewModel!!.getCardsByFaction(cardBasicInformation.playerClass)
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId){
+            android.R.id.home -> finish()
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

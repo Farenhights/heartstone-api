@@ -32,13 +32,17 @@ class HomeActivity : BaseActivity() {
 
     private fun init() {
         setBinding()
-        setObservables()
         setView()
+        setObservables()
         setEvents()
     }
 
     private fun setBinding() {
         binding.viewModel = viewModel
+    }
+
+    private fun setView() {
+        binding.viewModel!!.getCards()
     }
 
     private fun setObservables() {
@@ -59,10 +63,7 @@ class HomeActivity : BaseActivity() {
         val cardInformationList = loadCardInformationList(cardCategories, cardBasicInformationList)
         val listGroup = setCategoryAndCardInformation(cardInformationList)
 
-        binding.cardCategoryRecyclerView.adapter = CardCategoryAdapter(
-            listGroup,
-            ::onClickCardCategory
-        )
+        setAdapter(listGroup)
     }
 
     private fun loadCardInformationList(
@@ -92,8 +93,11 @@ class HomeActivity : BaseActivity() {
         return listGroup
     }
 
-    private fun setView() {
-        binding.viewModel!!.getCards()
+    private fun setAdapter(listGroup: ArrayList<Pair<Int, CardInformation>>) {
+        binding.cardCategoryRecyclerView.adapter = CardCategoryAdapter(
+            listGroup,
+            ::onClickCardCategory
+        )
     }
 
     private fun setEvents() {
@@ -102,11 +106,11 @@ class HomeActivity : BaseActivity() {
         }
     }
 
-    private fun onClickCardCategory(category: String, playerClass: String) {
+    private fun onClickCardCategory(category: String, cardBasicInformation: Basic) {
         val bundle = Bundle()
         val intent = Intent(this, CardsActivity::class.java)
         intent.putExtra(CardsActivity.category_type, category)
-        intent.putExtra(CardsActivity.player_class, playerClass)
+        intent.putExtra(CardsActivity.card_basic_information, cardBasicInformation)
 
         startActivity(intent, bundle)
     }

@@ -22,6 +22,7 @@ class CardMapper {
                         cardSet = basicResponse.cardSet ?: String(),
                         type = basicResponse.type ?: String(),
                         text = basicResponse.text ?: String(),
+                        race = basicResponse.race ?: String(),
                         playerClass = basicResponse.playerClass ?: String(),
                         locale = basicResponse.locale ?: String()
                     )

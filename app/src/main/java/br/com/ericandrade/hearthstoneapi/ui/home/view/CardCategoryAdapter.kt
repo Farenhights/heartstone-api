@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.item_card_category_title.view.*
 
 class CardCategoryAdapter(
     private val cardCategories: ArrayList<Pair<Int, CardInformation>>,
-    private val onClick: (String, String) -> Unit
+    private val onClick: (String, Basic) -> Unit
 ) : RecyclerView.Adapter<CardCategoryAdapter.ViewHolder>() {
 
     companion object {

@@ -2,4 +2,9 @@
     <string name="app_name">Hearthstone</string>
     <string name="wait">Wait&#8230;</string>
     <string name="url">https://media.services.zam.com/v1/media/byName/hs/cards/enus/LOEA10_3.png</string>
+    <string name="classes">Classes</string>
+    <string  name="types">Types</string>
+    <string name="races">Races</string>
+    <string name="qualities">Qualities</string>
+    <string name="factions">Factions</string>
 </resources>

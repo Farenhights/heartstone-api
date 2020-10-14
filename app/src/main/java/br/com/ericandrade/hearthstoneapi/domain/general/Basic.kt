@@ -1,6 +1,6 @@
 package br.com.ericandrade.hearthstoneapi.domain.general
 
-import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 class Basic(
     val cardId: String,
@@ -9,6 +9,7 @@ class Basic(
     val cardSet: String,
     val type: String,
     val text: String,
+    val race: String,
     val playerClass: String,
     val locale: String
-)
+): Serializable

@@ -9,6 +9,7 @@ class BasicResponse(
     @SerializedName("cardSet") val cardSet : String,
     @SerializedName("type") val type : String,
     @SerializedName("text") val text : String,
+    @SerializedName("race") val race : String,
     @SerializedName("playerClass") val playerClass : String,
     @SerializedName("locale") val locale : String
 )
