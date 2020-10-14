@@ -22,7 +22,7 @@ class HeartStoneService(apiConnection: ApiConnection) {
 
     internal fun getCardsByClass(playerClass: String): Observable<List<CardTypeResponse>> {
         return api
-            .getCardsByType(playerClass)
+            .getCardsByClass(playerClass)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }
@@ -36,7 +36,7 @@ class HeartStoneService(apiConnection: ApiConnection) {
 
     internal fun getCardsByQuality(playerClass: String): Observable<List<CardTypeResponse>> {
         return api
-            .getCardsByType(playerClass)
+            .getCardsByQuality(playerClass)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }
@@ -50,7 +50,7 @@ class HeartStoneService(apiConnection: ApiConnection) {
 
     internal fun getCardsByFaction(playerClass: String): Observable<List<CardTypeResponse>> {
         return api
-            .getCardsByType(playerClass)
+            .getCardsByFaction(playerClass)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }

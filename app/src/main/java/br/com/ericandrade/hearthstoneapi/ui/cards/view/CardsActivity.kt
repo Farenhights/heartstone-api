@@ -81,8 +81,8 @@ class CardsActivity : BaseActivity() {
             getString(R.string.classes) -> binding.viewModel!!.getCardsByClass(cardBasicInformation.playerClass)
             getString(R.string.types) -> binding.viewModel!!.getCardsByType(cardBasicInformation.type)
             getString(R.string.races) -> binding.viewModel!!.getCardsByRace(cardBasicInformation.race)
-            getString(R.string.qualities) -> binding.viewModel!!.getCardsByQuality(cardBasicInformation.playerClass)
-            getString(R.string.factions) -> binding.viewModel!!.getCardsByFaction(cardBasicInformation.playerClass)
+            getString(R.string.qualities) -> binding.viewModel!!.getCardsByQuality(cardBasicInformation.rarity)
+            getString(R.string.factions) -> binding.viewModel!!.getCardsByFaction(cardBasicInformation.faction)
         }
     }
 

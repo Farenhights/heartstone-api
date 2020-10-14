@@ -8,6 +8,8 @@ class BasicResponse(
     @SerializedName("name") val name : String,
     @SerializedName("cardSet") val cardSet : String,
     @SerializedName("type") val type : String,
+    @SerializedName("faction") val faction : String,
+    @SerializedName("rarity") val rarity : String,
     @SerializedName("text") val text : String,
     @SerializedName("race") val race : String,
     @SerializedName("playerClass") val playerClass : String,

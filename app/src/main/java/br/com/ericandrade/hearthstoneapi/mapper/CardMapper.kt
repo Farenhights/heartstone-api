@@ -21,6 +21,8 @@ class CardMapper {
                         name = basicResponse.name ?: String(),
                         cardSet = basicResponse.cardSet ?: String(),
                         type = basicResponse.type ?: String(),
+                        faction = basicResponse.faction ?: String(),
+                        rarity = basicResponse.rarity ?: String(),
                         text = basicResponse.text ?: String(),
                         race = basicResponse.race ?: String(),
                         playerClass = basicResponse.playerClass ?: String(),
