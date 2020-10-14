@@ -27,7 +27,7 @@
             <TextView
                 android:id="@+id/titleToolbarTextView"
                 style="@style/ToolbarText"
-                android:text="@string/app_name" />
+                android:text="@{viewModel.cardsModel.title}" />
         </androidx.appcompat.widget.Toolbar>
 
         <androidx.recyclerview.widget.RecyclerView

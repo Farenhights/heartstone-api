@@ -15,10 +15,15 @@ class CardsActivity : BaseActivity() {
 
     companion object {
         const val player_class = "playerClass"
+        const val category_type = "categoryType"
     }
 
     private val playerClass: String by lazy {
         intent.extras?.getSerializable(player_class) as String
+    }
+
+    private val categoryType: String by lazy {
+        intent.extras?.getSerializable(category_type) as String
     }
 
     private val binding: ActivityCardsBinding by lazy {
@@ -58,6 +63,7 @@ class CardsActivity : BaseActivity() {
     }
 
     private fun setView() {
+        binding.viewModel!!.setTitle(categoryType)
         binding.viewModel!!.getCardsByType(playerClass)
     }
 

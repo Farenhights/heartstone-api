@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.item_card_category_title.view.*
 
 class CardCategoryAdapter(
     private val cardCategories: ArrayList<Pair<Int, CardInformation>>,
-    private val onClick: (Basic) -> Unit
+    private val onClick: (String, String) -> Unit
 ) : RecyclerView.Adapter<CardCategoryAdapter.ViewHolder>() {
 
     companion object {
@@ -56,7 +56,7 @@ class CardCategoryAdapter(
         view: View,
         item: CardInformation
     ) {
-        view.cardCategoryRecyclerView.adapter = CardAdapter(item.basicCardInformationList, onClick)
+        view.cardCategoryRecyclerView.adapter = CardAdapter(item, onClick)
     }
 
     override fun getItemViewType(position: Int): Int {

@@ -102,10 +102,11 @@ class HomeActivity : BaseActivity() {
         }
     }
 
-    private fun onClickCardCategory(cardBasic: Basic) {
+    private fun onClickCardCategory(category: String, playerClass: String) {
         val bundle = Bundle()
         val intent = Intent(this, CardsActivity::class.java)
-        intent.putExtra(CardsActivity.player_class, cardBasic.playerClass)
+        intent.putExtra(CardsActivity.category_type, category)
+        intent.putExtra(CardsActivity.player_class, playerClass)
 
         startActivity(intent, bundle)
     }

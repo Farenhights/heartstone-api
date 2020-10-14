@@ -18,6 +18,7 @@ ext {
     rx_android = '2.1.0'
     rx_kotlin = '2.3.0'
     adapter_rxjava2 = '2.4.0'
+    timber_version = '4.7.1'
 }
 
 android {
@@ -97,4 +98,6 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxkotlin:$rx_kotlin"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$adapter_rxjava2"
 
+    // Timber
+    implementation "com.jakewharton.timber:timber:$timber_version"
 }

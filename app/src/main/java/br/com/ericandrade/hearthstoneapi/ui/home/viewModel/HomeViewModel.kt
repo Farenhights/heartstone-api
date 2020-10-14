@@ -11,16 +11,13 @@ class HomeViewModel(
     private val hearthStoneRepository: HearthStoneRepository
 ) : BaseViewModel() {
 
-    internal val cardsListLiveData = MutableLiveData<List<CardType>>()
     internal val cardBasicInformationListLiveData = MutableLiveData<List<Basic>>()
 
     fun getCards() {
         loadingLiveData.value = true
-        disposable.add(
-            hearthStoneRepository.getCards(
-                ::onGetCardsSuccess,
-                ::onFailure
-            )
+        hearthStoneRepository.getCards(
+            ::onGetCardsSuccess,
+            ::onFailure
         )
     }
 
