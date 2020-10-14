@@ -22,37 +22,37 @@ class CardsViewModel(
         )
     }
 
-    fun getCardsByRace(playerClass: String) {
+    fun getCardsByRace(race: String) {
         loadingLiveData.value = true
         hearthStoneRepository.getCardsByRace(
-            playerClass,
+            race,
             ::onGetCardsSuccess,
             ::onFailure
         )
     }
 
-    fun getCardsByQuality(playerClass: String) {
+    fun getCardsByQuality(quality: String) {
         loadingLiveData.value = true
         hearthStoneRepository.getCardsByQuality(
-            playerClass,
+            quality,
             ::onGetCardsSuccess,
             ::onFailure
         )
     }
 
-    fun getCardsByType(playerClass: String) {
+    fun getCardsByType(type: String) {
         loadingLiveData.value = true
         hearthStoneRepository.getCardsByType(
-            playerClass,
+            type,
             ::onGetCardsSuccess,
             ::onFailure
         )
     }
 
-    fun getCardsByFaction(playerClass: String) {
+    fun getCardsByFaction(faction: String) {
         loadingLiveData.value = true
         hearthStoneRepository.getCardsByFaction(
-            playerClass,
+            faction,
             ::onGetCardsSuccess,
             ::onFailure
         )

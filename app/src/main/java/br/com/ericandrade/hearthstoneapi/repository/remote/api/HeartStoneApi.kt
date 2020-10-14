@@ -16,23 +16,23 @@ interface HeartStoneApi {
         @Path("playerClass") playerClass: String
     ) : Observable<List<CardTypeResponse>>
 
-    @GET("cards/races/{playerClass}")
+    @GET("cards/races/{race}")
     fun getCardsByRace(
-        @Path("playerClass") playerClass: String
+        @Path("race") playerClass: String
     ) : Observable<List<CardTypeResponse>>
 
-    @GET("cards/qualities/{playerClass}")
+    @GET("cards/qualities/{quality}")
     fun getCardsByQuality(
-        @Path("playerClass") playerClass: String
+        @Path("quality") playerClass: String
     ) : Observable<List<CardTypeResponse>>
 
-    @GET("cards/types/{playerClass}")
+    @GET("cards/types/{type}")
     fun getCardsByType(
-        @Path("playerClass") playerClass: String
+        @Path("type") playerClass: String
     ) : Observable<List<CardTypeResponse>>
 
-    @GET("cards/factions/{playerClass}")
+    @GET("cards/factions/{faction}")
     fun getCardsByFaction(
-        @Path("playerClass") playerClass: String
+        @Path("faction") playerClass: String
     ) : Observable<List<CardTypeResponse>>
 }
