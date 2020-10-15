@@ -1,6 +1,6 @@
 # Aplicativo para consultar as API's do Hearthstone
 
-Esse aplicativo foi criado com o intuito de implementar novas tecnologias de mercado e consultar a API para montar um filtro de cartas do jogo.
+Esse aplicativo foi criado com o intuito de implementar novas tecnologias de mercado e consultar as API'S para montar um filtro de cartas do jogo.
 
 ### **Tecnologias Utilizadas** ###
 
